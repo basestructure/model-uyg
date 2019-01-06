@@ -1,10 +1,10 @@
 <?php
 /**
- * Genesis Sample.
+ * SETUP-HEADSTART
  *
- * This file adds functions to the Genesis Sample Theme.
+ * This file adds functions to the Genesis Theme SETUP-HEADSTART.
  *
- * @package Genesis Sample
+ * @package SETUP-HEADSTART
  * @author  StudioPress
  * @license GPL-2.0-or-later
  * @link    https://www.studiopress.com/
@@ -14,9 +14,9 @@
 require_once get_template_directory() . '/lib/init.php';
 
 // Defines the child theme (do not remove).
-define( 'CHILD_THEME_NAME', 'Genesis Sample' );
-define( 'CHILD_THEME_URL', 'https://www.studiopress.com/' );
-define( 'CHILD_THEME_VERSION', '2.7.1' );
+define( 'CHILD_THEME_NAME', 'SETUP-HEADSTART' );
+define( 'CHILD_THEME_URL', 'https://setup-headstart.basestructure.com/' );
+define( 'CHILD_THEME_VERSION', '2.7.2.1' );
 
 // Sets up the Theme.
 require_once get_stylesheet_directory() . '/lib/theme-defaults.php';
@@ -79,19 +79,6 @@ function genesis_sample_enqueue_scripts_styles() {
 	wp_enqueue_style( 'dashicons' );
 
 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-	wp_enqueue_script(
-		'genesis-sample-responsive-menu',
-		get_stylesheet_directory_uri() . "/js/responsive-menus{$suffix}.js",
-		array( 'jquery' ),
-		CHILD_THEME_VERSION,
-		true
-	);
-
-	wp_localize_script(
-		'genesis-sample-responsive-menu',
-		'genesis_responsive_menu',
-		genesis_sample_responsive_menu_settings()
-	);
 
 	wp_enqueue_script(
 		'genesis-sample',
@@ -100,30 +87,6 @@ function genesis_sample_enqueue_scripts_styles() {
 		CHILD_THEME_VERSION,
 		true
 	);
-
-}
-
-/**
- * Defines responsive menu settings.
- *
- * @since 2.3.0
- */
-function genesis_sample_responsive_menu_settings() {
-
-	$settings = array(
-		'mainMenu'         => __( 'Menu', 'genesis-sample' ),
-		'menuIconClass'    => 'dashicons-before dashicons-menu',
-		'subMenu'          => __( 'Submenu', 'genesis-sample' ),
-		'subMenuIconClass' => 'dashicons-before dashicons-arrow-down-alt2',
-		'menuClasses'      => array(
-			'combine' => array(
-				'.nav-primary',
-			),
-			'others'  => array(),
-		),
-	);
-
-	return $settings;
 
 }
 
@@ -166,6 +129,70 @@ add_theme_support(
 		'flex-width'  => true,
 	)
 );
+
+// Adds support for editor font sizes.
+add_theme_support( 'editor-font-sizes', array(
+	array(
+		'name'      => __( 'huge', 'setup-headstart' ),
+		'size'      => 128,
+		'slug'      => 'huge'
+	),
+	array(
+		'name'      => __( 'xxxlrg', 'setup-headstart' ),
+		'size'      => 96,
+		'slug'      => 'xxxlrg'
+	),
+	array(
+		'name'      => __( 'xxlrg', 'setup-headstart' ),
+		'size'      => 80,
+		'slug'      => 'xxlrg'
+	),
+	array(
+		'name'      => __( 'xlrg', 'setup-headstart' ),
+		'size'      => 64,
+		'slug'      => 'xlrg'
+	),
+	array(
+		'name'      => __( 'lrg', 'setup-headstart' ),
+		'size'      => 48,
+		'slug'      => 'lrg'
+	),
+	array(
+		'name'      => __( 'med', 'setup-headstart' ),
+		'size'      => 34,
+		'slug'      => 'med'
+	),
+	array(
+		'name'      => __( 'sml', 'setup-headstart' ),
+		'size'      => 24,
+		'slug'      => 'sml'
+	),
+	array(
+		'name'      => __( 'xsml', 'setup-headstart' ),
+		'size'      => 20,
+		'slug'      => 'xsml'
+	),
+	array(
+		'name'      => __( 'regular', 'setup-headstart' ),
+		'size'      => 18,
+		'slug'      => 'regular'
+	),
+	array(
+		'name'      => __( 'xxsml', 'setup-headstart' ),
+		'size'      => 16,
+		'slug'      => 'xxsml'
+	),
+	array(
+		'name'      => __( 'xxxsml', 'setup-headstart' ),
+		'size'      => 14,
+		'slug'      => 'xxxsml'
+	),
+	array(
+		'name'      => __( 'tiny', 'setup-headstart' ),
+		'size'      => 12,
+		'slug'      => 'tiny'
+	),
+) );
 
 // Renames primary and secondary navigation menus.
 add_theme_support(
@@ -242,26 +269,6 @@ add_action( 'genesis_header', 'genesis_do_nav', 12 );
 remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 add_action( 'genesis_footer', 'genesis_do_subnav', 10 );
 
-add_filter( 'wp_nav_menu_args', 'genesis_sample_secondary_menu_args' );
-/**
- * Reduces secondary navigation menu to one level depth.
- *
- * @since 2.2.3
- *
- * @param array $args Original menu options.
- * @return array Menu options with depth set to 1.
- */
-function genesis_sample_secondary_menu_args( $args ) {
-
-	if ( 'secondary' !== $args['theme_location'] ) {
-		return $args;
-	}
-
-	$args['depth'] = 1;
-	return $args;
-
-}
-
 add_filter( 'genesis_author_box_gravatar_size', 'genesis_sample_author_box_gravatar' );
 /**
  * Modifies size of the Gravatar in the author box.
@@ -292,3 +299,25 @@ function genesis_sample_comments_gravatar( $args ) {
 	return $args;
 
 }
+
+// ------------------------------------------------------------------------
+// CREDITS
+
+//* Add the credits section on the site footer
+remove_action( 'genesis_footer', 'genesis_do_footer' );
+add_action( 'genesis_footer', 'swp_sitefooter_credit' );
+function swp_sitefooter_credit() {
+	?>
+	<div class="credit">
+		<div class="sitefor">
+			<div class="credit-brand"></div>
+			<div class="credit-copyright">Copyright © <?php echo date("Y"); ?> Smarter Better · All Rights Reserved | <a href="<?php echo site_url(); ?>/privacy-policy/">Privacy Policy</a></div>
+			<div class="credit-designby">Site Design by <a href="https://smarterwebpackages.com/">SmarterWebPackages.com</a></div>
+		</div>
+		<div class="siteby"><a href="https://smarterwebpackages.com/">SmarterWebPackages.com</a></div>
+	</div>
+	<?php
+}
+
+// CREDITS -- END
+// ------------------------------------------------------------------------

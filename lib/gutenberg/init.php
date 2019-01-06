@@ -8,7 +8,7 @@
  * @link    https://www.studiopress.com/
  */
 
-add_action( 'wp_enqueue_scripts', 'genesis_sample_enqueue_gutenberg_frontend_styles' );
+//add_action( 'wp_enqueue_scripts', 'genesis_sample_enqueue_gutenberg_frontend_styles' );
 /**
  * Enqueues Gutenberg front-end styles.
  *
@@ -61,28 +61,52 @@ add_theme_support(
 	'editor-font-sizes',
 	array(
 		array(
+			'name'      => __( 'Tiny', 'setup-headstart' ),
+			'shortName' => __( 'T', 'genesis-sample' ),
+			'size'      => 12,
+			'slug'      => 'tiny',
+		),
+		array(
+			'name'      => __( 'XXXSmall', 'genesis-sample' ),
+			'shortName' => __( 'XXXS', 'genesis-sample' ),
+			'size'      => 14,
+			'slug'      => 'xxxsmall',
+		),
+		array(
+			'name'      => __( 'XXSmall', 'genesis-sample' ),
+			'shortName' => __( 'XXS', 'genesis-sample' ),
+			'size'      => 16,
+			'slug'      => 'xxsmall',
+		),
+		array(
+			'name'      => __( 'XSmall', 'genesis-sample' ),
+			'shortName' => __( 'XS', 'genesis-sample' ),
+			'size'      => 20,
+			'slug'      => 'xsmall',
+		),
+		array(
 			'name'      => __( 'Small', 'genesis-sample' ),
 			'shortName' => __( 'S', 'genesis-sample' ),
-			'size'      => 12,
+			'size'      => 24,
 			'slug'      => 'small',
 		),
 		array(
-			'name'      => __( 'Normal', 'genesis-sample' ),
+			'name'      => __( 'Medium', 'genesis-sample' ),
 			'shortName' => __( 'M', 'genesis-sample' ),
-			'size'      => 16,
-			'slug'      => 'normal',
+			'size'      => 34,
+			'slug'      => 'medium',
 		),
 		array(
 			'name'      => __( 'Large', 'genesis-sample' ),
 			'shortName' => __( 'L', 'genesis-sample' ),
-			'size'      => 20,
+			'size'      => 48,
 			'slug'      => 'large',
 		),
 		array(
-			'name'      => __( 'Larger', 'genesis-sample' ),
+			'name'      => __( 'XLarge', 'genesis-sample' ),
 			'shortName' => __( 'XL', 'genesis-sample' ),
-			'size'      => 24,
-			'slug'      => 'larger',
+			'size'      => 64,
+			'slug'      => 'xlarge',
 		),
 	)
 );
